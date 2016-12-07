@@ -2,10 +2,11 @@
 A distributed file system for storing photos based on Facebook's Haystack paper.
 
 Intructions to run the project: 
+Create a folder(Pystack) and download files/ directories - cache, directory, docker-compose.yml, store.
 Cd to the directory pystack.
 Please setup docker-compose first - https://docs.docker.com/compose/install/
 
-Navigate to project directory in terminal and run the following commands:
+Navigate to project directory(pystack) in terminal and run the following commands:
 
 docker-compose build
 docker-compose up
