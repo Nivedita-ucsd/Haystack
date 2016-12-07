@@ -1,0 +1,56 @@
+directory:
+  build: ./directory
+  command: python -u server.py
+  ports:
+    - "5000:5000"
+  volumes:
+    - ./directory:/directory
+  links:
+    - db
+    - store1:store1
+    - store2:store2
+
+cache:
+  build: ./cache
+  command: python -u server.py
+  ports:
+    - "5001:5000"
+  volumes:
+    - ./cache:/cache
+  links:
+    - redis3
+    - store1:store1
+    - store2:store2
+
+store1:
+  build: ./store
+  command: python -u app.py redis1
+  ports:
+    - "9998:9999"
+  volumes:
+    - /store1
+  links:
+    - redis1
+
+store2:
+  build: ./store
+  command: python -u app.py redis2
+  ports:
+    - "9999:9999"
+  volumes:
+    - /store2
+  links:
+    - redis2
+
+
+db:
+  image: mongo:3.0.2
+
+redis1:
+  image: redis
+
+redis2:
+  image: redis
+
+redis3:
+  image: redis
